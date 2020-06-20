@@ -122,29 +122,20 @@ body {
 
 .app {
   font-size: 1.6rem;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, .1), rgba(0, 0, 0, .75)), url('images/cold-bg.jpg');
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, .25), rgba(0, 0, 0, .75)), url('images/cold-bg.jpg');
   background-size: cover;
   background-position: top;
   height: 100vh;
   text-align: center;
-  transition: .4s ease-in;
-}
-
-@media only screen and (max-width: 20em) {
-  .app {
-    font-size: 1.6rem;
-  }
 }
 
 .warm {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, .1), rgba(0, 0, 0, .75)), url('images/warm-bg.jpg');
-  transition: .4s ease-in;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, .25), rgba(0, 0, 0, .75)), url('images/warm-bg.jpg');
 }
 
 main {
   height: 100%;
   padding: 2rem;
-
 }
 
 .search-box {
@@ -152,7 +143,6 @@ main {
   margin: 0 0 4rem;
   position: relative;
   opacity: 0;
-  /* animation: boxMove .6s 1.5s ease-in 1 alternate forwards; */
 }
 
 .search-box .search-bar {
@@ -654,7 +644,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  background-color: rgba(255, 255, 255, .5);
+  background-color: rgba(255, 255, 255, .6);
   box-shadow: 0.3rem 0.6rem rgba(0, 0, 0, .25);
   border-radius: 1.2rem;
 }
@@ -685,7 +675,6 @@ main {
   width: 100%;
   font-size: 1.2rem;
   font-weight: 500;
-  font-style: italic;
   color: #eaf6f6;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, .8), rgba(0, 0, 0, .6));
   padding: 2rem 1rem 2rem;
@@ -901,8 +890,6 @@ main {
   backdrop-filter: blur(1rem);
 }
 
-
-
 .icon-animate {
   width: 35%;
   position: absolute;
@@ -912,8 +899,8 @@ main {
 }
 
 ::selection {
-  background-color: grey;
-  color: #eaf6f6;
+  background-color: #eaf6f6;
+  color: #212529;
 }
 
 /* Animation */

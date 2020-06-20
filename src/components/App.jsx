@@ -148,7 +148,7 @@ function App() {
   }
 
   return <div className={(
-  weather.temp > 16)
+  weather.tempC > 16)
     ? "app warm"
     : "app"}>
 
