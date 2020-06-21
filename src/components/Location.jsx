@@ -229,13 +229,11 @@ function Location({date}) {
 							<div className="loc-icon" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">{locWeather.main}<img src={imgUrl} alt="weatherIcon" className="icon-weather" /></div>
 						</div>
 					</div>
-					<div data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
-						<span className="address" id="address">
-							{ (location.road) ? <div><FontAwesomeIcon icon='road' className="icon-road" /> {location.road} - <img src='../images/mailbox.svg' alt='Mailbox' className="icon-mail"></img>{location.postcode}</div> :
-							<div><img src='../images/mailbox.svg' alt='Mailbox' className="icon-mail"></img>{location.postcode}</div>
-							}
-						</span>
-					</div>
+					<span className="address" id="address" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+						{ (location.road) ? <div><FontAwesomeIcon icon='road' className="icon-road" /> {location.road} - <img src='../images/mailbox.svg' alt='Mailbox' className="icon-mail"></img>{location.postcode}</div> :
+						<div><img src='../images/mailbox.svg' alt='Mailbox' className="icon-mail"></img>{location.postcode}</div>
+						}
+					</span>
 				</div>
 			:
 			<div className="section-ask">

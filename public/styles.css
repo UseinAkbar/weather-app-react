@@ -669,8 +669,7 @@ main {
 
 .address {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   bottom: 0;
   width: 100%;
   font-size: 1.2rem;
@@ -679,6 +678,12 @@ main {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, .8), rgba(0, 0, 0, .6));
   padding: 2rem 1rem 2rem;
   line-height: 2;
+}
+
+.address div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .section-ask {
@@ -729,13 +734,17 @@ main {
   height: 80%;
 }
 
+.icon-road,
+.icon-mail {
+  margin-right: 3px;
+}
+
 .icon-road {
   font-size: 2rem;
 }
 
 .icon-mail {
   width: 2.4rem;
-  transform: translateY(.5rem);
 }
 
 @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em) {
