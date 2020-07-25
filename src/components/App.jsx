@@ -10,7 +10,7 @@ library.add(faSearch, faWind, faMapMarkerAlt);
 
 function App() {
   const [query, setQuery] = useState('');
-  const [weather, setWeather] = useState({tempC: '', tempF: '', name: '', country: '', main: '', icon:'', speed:''});
+  const [weather, setWeather] = useState({});
   const [time, setTime] = useState('');
   const [isDone, setDone] = useState(false);
   const [greeting, setGreeting] = useState('');
@@ -105,7 +105,7 @@ function App() {
 		})
 	}
   //React loading animation while fetching the data
-  const loadAnime = (data) => {
+  const loadAnime = data => {
     ( !data ? setLoad(true) : setLoad(false) );
 	};
 
@@ -120,17 +120,14 @@ function App() {
       const {name, main: {temp}, sys: {country}, weather, wind: {speed}} = response.data;
       const [currentWeather] = weather;
       const {main, icon} = currentWeather;
-      setWeather(prevValue => {
-        return {
-          ...prevValue,
+      setWeather({
           name,
           tempC: temp,
           country,
           main,
           icon,
           speed
-        }
-      })
+        });
       convertToFahrenheit(temp);
       loadAnime(temp);
     }).catch(err => {
@@ -140,11 +137,13 @@ function App() {
     })
   }
 
-  const handleClick = () => {
+  const handleSubmit = (event) => {
     loadAnime('');
     fetchData();
     setDone(true);
     setQuery('');
+
+    event.preventDefault();
   }
 
   return <div className={(
@@ -158,9 +157,11 @@ function App() {
 
     <main className={!isDone ? `main ${background}` : undefined} id="mainSearch">
       <div className="search-box" data-aos="fade-down" data-aos-duration="800">
-        <input type="text" name='city' id="searchCity" placeholder="Search a city" onChange={handleChange} className="search-bar" value={query} autoComplete="off"/>
-        <label for="searchCity" className="search-label">Search a city</label>
-        <button type="submit" onClick={handleClick} className='search-button'><FontAwesomeIcon icon='search' className="icon" /></button>
+        <form onSubmit={handleSubmit}>
+          <input type="text" name='city' id="searchCity" placeholder="Search a city" onChange={handleChange} className="search-bar" value={query} autoComplete="off"/>
+          <label for="searchCity" className="search-label">Search a city</label>
+          <button type="submit" className='search-button'><FontAwesomeIcon icon='search' className="icon" /></button>
+        </form>
       </div>
       {
         isDone
@@ -176,7 +177,7 @@ function App() {
               </div>
               <div className="weather">
                 <div className="weather__desc">{weather.main}<img src={imgUrl} alt="weatherIcon" /></div>
-                <div className="weather__wind"><FontAwesomeIcon icon='wind' className="icon-wind" /> {weather.speed}km/h</div>
+                <div className="weather__wind"><FontAwesomeIcon icon='wind' className="icon-wind" /> {weather.speed} km/h</div>
               </div>
             </div>
           </div>

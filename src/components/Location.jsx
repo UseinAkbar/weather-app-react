@@ -11,8 +11,8 @@ import animationData from '../watermelon-animation.json';
 library.add(faWind, faRoad, faInstagram, faGithub, faMapMarkerAlt, faMapMarkedAlt);
 
 function Location({date}) {
-	const [location, setLocation] = useState({county: '', road: '', postcode: '', lat: '', lng: ''});
-	const [locWeather, setLocWeather] = useState({tempC: '', tempF: '', country: '', main: '', icon:'', speed:'', humidity: ''});
+	const [location, setLocation] = useState({});
+	const [locWeather, setLocWeather] = useState({});
 	const [isAgree, setAgree] = useState(false);
 	const [background, setBackground] = useState('');
 	const [imgData, setImgData] = useState('');
@@ -101,16 +101,13 @@ function Location({date}) {
 	//Fetch the weather data based on the getCoordintes data
 	const fetchData = (locData) => {
 		const [county, road, postcode, lat, lng] = locData;
-		setLocation(prevValue => {
-			return {
-				...prevValue,
+		setLocation({
 				county,
 				road,
 				postcode,
 				lat,
 				lng
-			}
-		})
+		});
 
     axios(baseUrl, {
       params: {
@@ -122,17 +119,14 @@ function Location({date}) {
       const {main: {temp, humidity}, sys: {country}, weather, wind: {speed}} = response.data;
       const [currentWeather] = weather;
       const {main, icon} = currentWeather;
-      setLocWeather(prevValue => {
-        return {
-          ...prevValue,
+      setLocWeather({
           tempC: temp,
           country,
           main,
           icon,
           speed,
 					humidity
-        }
-      })
+        });
 			convertToFahrenheit(temp);
 			backgroundWeather(icon);
 			loadAnime(temp);
@@ -223,13 +217,13 @@ function Location({date}) {
 						</div>
 						<div className="locDesc">
 							<div className="loc-box" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
-								<div className="loc-wind"><FontAwesomeIcon icon='wind' className="icon-wind" /> {locWeather.speed}km/h</div>
+								<div className="loc-wind"><FontAwesomeIcon icon='wind' className="icon-wind" /> {locWeather.speed} km/h</div>
 								<div className="loc-humid"><img src='../images/rain.svg' alt="weatherIcon" className="icon-humid" />{locWeather.humidity}%</div>
 							</div>
 							<div className="loc-icon" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">{locWeather.main}<img src={imgUrl} alt="weatherIcon" className="icon-weather" /></div>
 						</div>
 					</div>
-					<span className="address" id="address" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+					<span className="address" id="address">
 						{ (location.road) ? <div><FontAwesomeIcon icon='road' className="icon-road" /> {location.road} - <img src='../images/mailbox.svg' alt='Mailbox' className="icon-mail"></img>{location.postcode}</div> :
 						<div><img src='../images/mailbox.svg' alt='Mailbox' className="icon-mail"></img>{location.postcode}</div>
 						}
